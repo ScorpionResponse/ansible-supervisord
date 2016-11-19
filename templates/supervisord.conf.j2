@@ -6,7 +6,7 @@
 
 [unix_http_server]
 file = /var/run/supervisord.sock
-chown = {{ supervisord_user_name }}:{{ supervisord_group_name }}
+chown = root:{{ supervisord_group_name }}
 chmod = 0770
 
 [supervisord]
