@@ -1,0 +1,12 @@
+---
+- name: restart supervisord
+  service:
+    name: supervisord
+    state: restarted
+    enabled: yes
+
+- name: stop supervisord
+  service:
+    name: supervisord
+    state: stopped
+    enabled: no
