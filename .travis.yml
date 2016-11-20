@@ -2,18 +2,18 @@
 sudo: required
 
 env:
-  - distro: centos7
-    init: /usr/lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    #- distro: centos7
+    #init: /usr/lib/systemd/systemd
+    #run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
   - distro: debian8 
     init: /lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-  - distro: ubuntu1204
-    init: /sbin/init
-    run_opts: "--privileged"
-  - distro: ubuntu1404
-    init: /sbin/init
-    run_opts: "--privileged"
+    #- distro: ubuntu1204
+    #init: /sbin/init
+    #run_opts: "--privileged"
+    #- distro: ubuntu1404
+    #init: /sbin/init
+    #run_opts: "--privileged"
   - distro: ubuntu1604
     init: /lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
@@ -52,7 +52,6 @@ script:
     || (echo 'Idempotence test: fail' && exit 1)
 
   # Test results of role
-  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ls -l /var/run/'
   - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm which supervisorctl'
   - version=$(mktemp)
   - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm supervisorctl version | tee -a ${version}'
