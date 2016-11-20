@@ -2,12 +2,24 @@ galaxy_info:
   author: Paul Moss
   description: Installer for supervisord
   license: BSD
-  min_ansible_version: 1.2
+  min_ansible_version: 2.2
 
   platforms:
+  - name: EL
+    versions:
+    - 7
+  - name: Debian
+    versions:
+    - jessie
+  - name: Fedora
+    versions:
+    - 24
   - name: Ubuntu
     versions:
+    - precise
+    - trusty
     - xenial
+    - yakkety
 
   galaxy_tags: 
     - system
