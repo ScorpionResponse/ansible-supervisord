@@ -8,9 +8,6 @@ env:
   - distro: debian8 
     init: /lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-  - distro: fedora24
-    init: /usr/lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
   - distro: ubuntu1204
     init: /sbin/init
     run_opts: ""
@@ -56,6 +53,7 @@ script:
 
   # Test results of role
   - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm which supervisorctl'
+  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm supervisorctl --version'
 
 after_success:
   # Clean up.
