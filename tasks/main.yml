@@ -45,6 +45,12 @@
     dest: "{{ supervisord_config_dir }}/supervisord.conf"
     mode: 0755
 
+- name: Link supervisord.conf to required location
+  file:
+    src: "{{ supervisord_config_dir }}/supervisord.conf"
+    dest: /etc/supervisord.conf
+    state: link
+
 - name: Install supervisord.system script
   template:
     src: supervisord.service.j2
@@ -53,7 +59,3 @@
   when:
     - ansible_service_mgr == 'systemd'
   notify: start supervisord
-
-- name: Print debug info about service_mgr
-  debug:
-    msg: "Service Manager is {{ ansible_service_mgr }}"
