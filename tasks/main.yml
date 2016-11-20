@@ -43,6 +43,8 @@
   template:
     src: supervisord.conf.j2
     dest: "{{ supervisord_config_dir }}/supervisord.conf"
+    owner: "{{ supervisord_user_name }}"
+    group: "{{ supervisord_group_name }}"
     mode: 0755
 
 - name: Link supervisord.conf to required location
@@ -55,7 +57,9 @@
   template:
     src: supervisord.service.j2
     dest: /etc/systemd/system/supervisord.service
-    mode: 0755
+    owner: root
+    group: "{{ supervisord_group_name }}"
+    mode: 0775
   when:
     - ansible_service_mgr == 'systemd'
   notify: start supervisord
@@ -64,7 +68,9 @@
   template:
     src: supervisord.j2
     dest: /etc/init.d/supervisord
-    mode: 0755
+    owner: root
+    group: "{{ supervisord_group_name }}"
+    mode: 0775
   when:
     - ansible_service_mgr == 'upstart'
   notify: start supervisord
