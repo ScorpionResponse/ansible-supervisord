@@ -1,16 +1,28 @@
 ---
-- name: start supervisord
+- name: Start supervisord (systemd)
   systemd:
     name: supervisord
     enabled: yes
     state: started
+  listen: "start supervisord"
+  when:
+    - ansible_service_mgr == 'systemd'
 
-- name: restart supervisord
+- name: Start supervisord (init)
+  system:
+    name: supervisord
+    enabled: yes
+    state: started
+  listen: "start supervisord"
+  when:
+    - ansible_service_mgr == 'init'
+
+- name: Restart supervisord
   systemd:
     name: supervisord
     state: restarted
 
-- name: stop supervisord
+- name: Stop supervisord
   systemd:
     name: supervisord
     state: stopped
