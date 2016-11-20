@@ -64,7 +64,6 @@
     - ansible_service_mgr == 'systemd'
   notify: 
     - start supervisord
-    - restart supervisord
 
 - name: Install supervisord init script
   template:
@@ -77,4 +76,3 @@
     - ansible_service_mgr == 'upstart'
   notify:
     - start supervisord
-    - restart supervisord
