@@ -11,7 +11,7 @@
 - name: Start supervisord (upstart)
   listen: "start supervisord"
   service:
-    name: supervisor
+    name: supervisord
     enabled: yes
     state: started
   when:
@@ -28,7 +28,7 @@
 - name: Restart supervisord (upstart)
   listen: "restart supervisord"
   service:
-    name: supervisor
+    name: supervisord
     state: restarted
   when:
     - ansible_service_mgr == 'upstart'
@@ -44,7 +44,7 @@
 - name: Stop supervisord (upstart)
   listen: "stop supervisord"
   service:
-    name: supervisor
+    name: supervisord
     state: stopped
   when:
     - ansible_service_mgr == 'upstart'
