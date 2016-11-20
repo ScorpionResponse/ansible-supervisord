@@ -66,5 +66,5 @@
     dest: /etc/init.d/supervisord
     mode: 0755
   when:
-    - ansible_service_mgr == 'init'
+    - ansible_service_mgr == 'sysvinit'
   notify: start supervisord
