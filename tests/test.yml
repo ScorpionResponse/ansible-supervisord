@@ -1,6 +1,4 @@
 ---
-- hosts: localhost
-  connection: local
-  remote_user: root
+- hosts: all
   roles:
-    - ansible-supervisord
+    - role_under_test
