@@ -62,7 +62,9 @@
     mode: 0775
   when:
     - ansible_service_mgr == 'systemd'
-  notify: start supervisord
+  notify: 
+    - start supervisord
+    - restart supervisord
 
 - name: Install supervisord init script
   template:
@@ -73,4 +75,6 @@
     mode: 0775
   when:
     - ansible_service_mgr == 'upstart'
-  notify: start supervisord
+  notify:
+    - start supervisord
+    - restart supervisord
