@@ -52,7 +52,7 @@ script:
     || (echo 'Idempotence test: fail' && exit 1)
 
   # Test results of role
-  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ps aux | grep supervisor'
+  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ps ef'
   - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm which supervisorctl'
   - version=$(mktemp)
   - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm supervisorctl version | tee -a ${version}'
