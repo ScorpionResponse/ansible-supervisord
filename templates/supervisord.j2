@@ -15,13 +15,13 @@
 # Version:	@(#)skeleton  1.9  26-Feb-2001  miquels@cistron.nl
 #
 ### BEGIN INIT INFO
-# Provides:          supervisor
+# Provides:          supervisord
 # Required-Start:    $remote_fs $network $named
 # Required-Stop:     $remote_fs $network $named
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
-# Short-Description: Start/stop supervisor
-# Description:       Start/stop supervisor daemon and its configured
+# Short-Description: Start/stop supervisord
+# Description:       Start/stop supervisord daemon and its configured
 #                    subprocesses.
 ### END INIT INFO
 
@@ -31,7 +31,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 DAEMON=/usr/bin/supervisord
 SUPERVISORCTL=/usr/bin/supervisorctl
 NAME=supervisord
-DESC=supervisor
+DESC=supervisord
 
 test -x $DAEMON || exit 0
 
@@ -43,8 +43,8 @@ DODTIME=5                   # Time to wait for the server to die, in seconds
                             # 'restart' will not work
 
 # Include supervisor defaults if available
-if [ -f /etc/default/supervisor ] ; then
-	. /etc/default/supervisor
+if [ -f /etc/default/supervisord ] ; then
+	. /etc/default/supervisord
 fi
 DAEMON_OPTS="-c {{ supervisord_config_dir }}/supervisord.conf $DAEMON_OPTS"
 
