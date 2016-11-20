@@ -68,7 +68,7 @@
 - name: Install supervisord init script
   template:
     src: supervisord.j2
-    dest: /etc/init.d/supervisord
+    dest: /etc/init/supervisord.conf
     owner: root
     group: "{{ supervisord_group_name }}"
     mode: 0775
