@@ -53,7 +53,7 @@ script:
 
   # Test results of role
   - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm which supervisorctl'
-  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm supervisorctl --version'
+  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm supervisorctl version'
 
 after_success:
   # Clean up.
