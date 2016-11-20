@@ -9,7 +9,7 @@ env:
     init: /usr/lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
   - distro: debian8 
-    init: /usr/lib/systemd/systemd
+    init: /lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
   - distro: fedora24
     init: /usr/lib/systemd/systemd
@@ -58,6 +58,7 @@ script:
     || (echo 'Idempotence test: fail' && exit 1)
 
   # Test results of role
+  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm which supervisorctl'
 
 after_success:
   # Clean up.
