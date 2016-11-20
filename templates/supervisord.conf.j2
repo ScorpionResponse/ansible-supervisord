@@ -10,7 +10,7 @@ chown = {{ supervisord_user_name }}:{{ supervisord_group_name }}
 chmod = 0770
 
 [supervisord]
-user = {{ supervisord_user_name }}
+#user = {{ supervisord_user_name }}
 logfile = {{ supervisord_log_dir }}/supervisord.log
 logfile_maxbytes = 50MB
 logfile_backups = 10
