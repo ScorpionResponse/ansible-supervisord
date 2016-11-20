@@ -8,14 +8,14 @@
   when:
     - ansible_service_mgr == 'systemd'
 
-- name: Start supervisord (sysvinit)
+- name: Start supervisord (upstart)
   listen: "start supervisord"
   service:
     name: supervisord
     enabled: yes
     state: started
   when:
-    - ansible_service_mgr == 'sysvinit'
+    - ansible_service_mgr == 'upstart'
 
 - name: Restart supervisord (systemd)
   listen: "restart supervisord"
@@ -25,13 +25,13 @@
   when:
     - ansible_service_mgr == 'systemd'
 
-- name: Restart supervisord (sysvinit)
+- name: Restart supervisord (upstart)
   listen: "restart supervisord"
   service:
     name: supervisord
     state: restarted
   when:
-    - ansible_service_mgr == 'sysvinit'
+    - ansible_service_mgr == 'upstart'
 
 - name: Stop supervisord (systemd)
   listen: "stop supervisord"
@@ -41,10 +41,10 @@
   when:
     - ansible_service_mgr == 'systemd'
 
-- name: Stop supervisord (sysvinit)
+- name: Stop supervisord (upstart)
   listen: "stop supervisord"
   service:
     name: supervisord
     state: stopped
   when:
-    - ansible_service_mgr == 'sysvinit'
+    - ansible_service_mgr == 'upstart'
