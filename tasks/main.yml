@@ -7,12 +7,13 @@
 - name: Create Group for Supervisord
   group:
     name: "{{ supervisord_group_name }}"
+    system: yes
     state: present
 
 - name: Create User for Supervisord
   user:
     name: "{{ supervisord_user_name }}"
-    groups: "{{ supervisord_group_name }}"
+    groups: "{{ supervisord_group_name }},www-data"
     append: yes
 
 - name: Create supervisord log directory
@@ -20,7 +21,7 @@
     path: "{{ supervisord_log_dir }}"
     state: directory
     owner: "{{ supervisord_user_name }}"
-    group: "{{ supervisord_group_name }}"
+    group: "www-data"
     mode: 0775
 
 - name: Create supervisord configuration directory
