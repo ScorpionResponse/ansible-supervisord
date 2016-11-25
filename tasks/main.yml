@@ -13,7 +13,7 @@
 - name: Create User for Supervisord
   user:
     name: "{{ supervisord_user_name }}"
-    groups: "{{ supervisord_group_name }},www-data"
+    groups: "{{ supervisord_group_name }},apache"
     append: yes
 
 - name: Create supervisord log directory
@@ -21,7 +21,7 @@
     path: "{{ supervisord_log_dir }}"
     state: directory
     owner: "{{ supervisord_user_name }}"
-    group: "www-data"
+    group: "apache"
     mode: 0775
 
 - name: Create supervisord configuration directory
