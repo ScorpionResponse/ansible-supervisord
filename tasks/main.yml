@@ -1,4 +1,16 @@
 ---
+- name: Set default web group on Debian
+  set_fact:
+    web_group: "www-data"
+  when:
+    - ansible_os_family == "Debian"
+
+- name: Set default web group
+  set_fact:
+    web_group: "apache"
+  when:
+    - ansible_os_family == "RedHat"
+
 - name: Pip install Supervisord 
   pip:
     name: supervisor
@@ -13,7 +25,7 @@
 - name: Create User for Supervisord
   user:
     name: "{{ supervisord_user_name }}"
-    groups: "{{ supervisord_group_name }},www-data"
+    groups: "{{ supervisord_group_name }},{{ web_group }}"
     append: yes
 
 - name: Create supervisord log directory
@@ -21,7 +33,7 @@
     path: "{{ supervisord_log_dir }}"
     state: directory
     owner: "{{ supervisord_user_name }}"
-    group: "www-data"
+    group: "{{ web_group }}"
     mode: 0775
 
 - name: Create supervisord configuration directory
