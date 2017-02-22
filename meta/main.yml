@@ -22,4 +22,5 @@ galaxy_info:
     - system
 
 dependencies:
-  - {role: ScorpionResponse.pip, use_python3: False}
+  - src: ScorpionResponse.pip
+    use_python3: False
