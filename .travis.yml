@@ -3,14 +3,14 @@ language: python
 sudo: required
 
 env:
-  - distro: debian8 
-    init: /lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-    use_python3: True
-  - distro: ubuntu1604
-    init: /lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-    use_python3: True
+    # - distro: debian8 
+    # init: /lib/systemd/systemd
+    # run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    # use_python3: True
+    # - distro: ubuntu1604
+    # init: /lib/systemd/systemd
+    # run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    # use_python3: True
   - distro: debian8 
     init: /lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
