@@ -1,22 +1,24 @@
 ---
+language: python
 sudo: required
 
 env:
-    #- distro: centos7
-    #init: /usr/lib/systemd/systemd
-    #run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
   - distro: debian8 
     init: /lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-    #- distro: ubuntu1204
-    #init: /sbin/init
-    #run_opts: "--privileged"
-    # - distro: ubuntu1404
-    #init: /sbin/init
-    #run_opts: "--privileged"
+    use_python3: True
   - distro: ubuntu1604
     init: /lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    use_python3: True
+  - distro: debian8 
+    init: /lib/systemd/systemd
+    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    use_python3: False
+  - distro: ubuntu1604
+    init: /lib/systemd/systemd
+    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    use_python3: False
 
 services:
   - docker
@@ -40,11 +42,11 @@ script:
   - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook /etc/ansible/roles/role_under_test/tests/test.yml --syntax-check'
 
   # Test the role
-  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook /etc/ansible/roles/role_under_test/tests/test.yml'
+  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook /etc/ansible/roles/role_under_test/tests/test.yml --extra-vars "use_python3=${use_python3}"'
     
   # Test role idempotence.
   - idempotence=$(mktemp)
-  - 'sudo docker exec "$(cat ${container_id})" ansible-playbook /etc/ansible/roles/role_under_test/tests/test.yml | tee -a ${idempotence}'
+  - 'sudo docker exec "$(cat ${container_id})" ansible-playbook /etc/ansible/roles/role_under_test/tests/test.yml --extra-vars "use_python3=${use_python3}" | tee -a ${idempotence}'
   - >
     tail ${idempotence}
     | grep -q 'changed=0.*failed=0'
