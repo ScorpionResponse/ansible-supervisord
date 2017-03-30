@@ -15,6 +15,7 @@
   pip:
     name: supervisor
     state: present
+    pip_executable: "pip2"
 
 - name: Create Group for Supervisord
   group:
