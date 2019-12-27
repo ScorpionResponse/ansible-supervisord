@@ -28,8 +28,8 @@
 . /lib/lsb/init-functions
 
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
-DAEMON=/usr/bin/supervisord
-SUPERVISORCTL=/usr/bin/supervisorctl
+DAEMON={{ supervisord_path }}/supervisord
+SUPERVISORCTL={{ supervisord_path }}/supervisorctl
 NAME=supervisord
 DESC=supervisord
 

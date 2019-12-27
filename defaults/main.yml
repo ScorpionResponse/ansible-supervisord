@@ -6,3 +6,4 @@ supervisord_config_dir: /etc/supervisord
 supervisord_log_dir: /var/log/supervisord
 
 
+supervisord_path: /usr/bin/

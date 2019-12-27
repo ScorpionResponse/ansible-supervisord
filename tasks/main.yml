@@ -60,7 +60,9 @@
     owner: "{{ supervisord_user_name }}"
     group: "{{ supervisord_group_name }}"
     mode: 0755
-
+  tags:
+    supervisord_conf
+    
 - name: Link supervisord.conf to required location
   file:
     src: "{{ supervisord_config_dir }}/supervisord.conf"
